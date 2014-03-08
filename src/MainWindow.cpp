@@ -63,7 +63,7 @@ MainWindow::~MainWindow() {
  * Open the MPO file
  */
 void MainWindow::open() {
-    MpoFileDialog dlg(*this, "Choose a MPO");
+    MpoFileDialog dlg(*this, "Choose a MPO file");
     if (dlg.run() != Gtk::RESPONSE_OK) {
         return;
     }
@@ -80,7 +80,7 @@ void MainWindow::open() {
  * Calibrate the stereo camera
  */
 void MainWindow::calibrate() {
-    MpoFileDialog dlg(*this, "Choose a MPOs");
+    MpoFileDialog dlg(*this, "Choose MPO files");
     dlg.set_select_multiple(true);
     if (dlg.run() != Gtk::RESPONSE_OK) {
         return;
