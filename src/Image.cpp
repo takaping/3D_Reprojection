@@ -183,8 +183,10 @@ Image Image::computeDisparityMapSGBM(const vector<Image>& imgs) {
     cv::StereoSGBM sgbm(0, nDisp, sadWinSize,
             8*ch*sadWinSize*sadWinSize, 32*ch*sadWinSize*sadWinSize,
             1, 63, 10, 100, 32, true);
-    cv::Mat disp;
-    sgbm(imgs[0].img, imgs[1].img, disp);
+    cv::Mat gray[2], disp;
+    cv::cvtColor(imgs[0].img, gray[0], CV_BGR2GRAY);
+    cv::cvtColor(imgs[1].img, gray[1], CV_BGR2GRAY);
+    sgbm(gray[0], gray[1], disp);
     
     cv::Mat dispGray, dispBGR;
     disp.convertTo(img, CV_32F, 1.0/16.0);
